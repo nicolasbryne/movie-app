@@ -1,0 +1,59 @@
+@layout('layout.main')
+
+@section('media_title')
+    {{ media.media_title }}
+@endsection
+
+@section('content')
+
+<section class="cover-poster">
+    <div class="poster-container" style="background-image:url('{{backdrop_prefix+media.backdrop_path}}')"></div>
+
+    <div class="title-display container col-lg-offset-2 col-sm-offset-4 col-md-offset-3">
+    <h4>{{ media.title }}</h4>
+            <p>{{ media.year }}</p>
+    </div>
+    <div class="small-play visible-xs visible-sm">
+        <div class="circle-play-xs" onClick="alert('We remove direct streaming of movie temporarily because of technical problem. We are trying to resolve as soon as possible. But you can save this movie to Google Drive and download. Thanks for choosing yoteshinportal. Please check for streaming again later')">
+            <i class="glyphicon glyphicon-play"></i>
+        </div>
+    </div>
+</section>
+
+<section class="lower">
+    <div class="poster-meta row">
+        <div class="col-sm-4 col-md-3 col-xs-4 col-lg-2 hidden-xs">
+            <div class="poster" style="background-image: url('{{poster_prefix+media.poster_path}}')">
+                <div class="poster-overlay">            
+                    <div class="circle-play" onClick="alert('We remove direct streaming of movie temporarily because of technical problem. We are trying to resolve as soon as possible. But you can save this movie to Google Drive and download. Thanks for choosing yoteshinportal. Please check for streaming again later')"><i class="glyphicon glyphicon-play"></i>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 col-xs-7 col-lg-7 meta-data">
+            
+           <!--   <p><?php echo $episode; ?></p>
+            <p><?php foreach($extra as $e){echo "<span>".htmlspecialchars($e)."</span><br>";} ?></p>  -->
+            
+        </div>
+    </div>
+    <div class="container drive-div">
+        <div class="row">
+            <div><img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Google_Drive_Logo.svg" class="driveicon animationlogo" onClick="location.href='https://drive.google.com'"></div>
+            <div class="col-md-12 col-xs-12">
+            <p>We will put this movie into your google drive account. Make sure you have sufficient free space on your drive and click the button below.
+            </p>
+            
+            </div>
+        </div>
+        <div class="button-area">
+            <!-- <a href="https://accounts.google.com/o/oauth2/auth?response_type=code&access_type=online&client_id=588371974302-tamr0osm9g6d0tsag5l5ipur8cbofhmc.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Fyoteshinportal.cf%2Fgoogleapi%2Fexamples%2Fexportprocess.php&state&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive&approval_prompt=auto" class="button-drive linebut modernbut">Export to Drive</a> -->
+            <span class="noti-area"></span><br>
+            <button id="exportbtn" class="button-drive linebut modernbut" onclick="clickmaker();">Save to Drive</button><br><button id="downloadbtn" onClick="gotodownload();" disabled class="linebut modernbut button-download">Download</button>
+        </div>
+    </div>
+</section>
+
+
+@endsection
