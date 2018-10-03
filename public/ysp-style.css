@@ -306,3 +306,48 @@ h2 + p{
 .btn-container{
     margin-top: 48px;
 }
+
+.meta-background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-position: center center;
+    will-change: transform;
+    background-image: url('https://livedemo00.template-help.com/wt_55018/images/parallax1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/*//////////////////////////////////////////////////////////////////
+[ login ]*/
+
+.limiter {
+    width: 100%;
+    margin: 0 auto;
+}
+  
+.container-login100 {
+    width: 100%;  
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background: #ebeeef;
+}
+  
+  
+.wrap-login100 {
+    width: 670px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}

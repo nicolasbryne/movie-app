@@ -25,3 +25,6 @@ Route.get('/media-save', 'MediaItemController.render');
 
 Route.get('/meta-item', 'MetadataItemController.mediaItem')
 Route.get('/meta-item-full', 'MetadataItemController.joinMedia');
+
+Route.on('/front').render('save');
+Route.on('/user-login').render('loginform');
