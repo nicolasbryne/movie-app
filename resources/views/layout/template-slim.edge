@@ -6,28 +6,14 @@
 </head>
 <body>
     <header>
-        <div class="header-container">
-            @include('includes.navbar')
-        </div>
-        <section class="sub-header">   
-            @include('includes.subheader')
-        </section>
         <div class="header-container isFixed">
             @include('includes.navbar')
-        </div>
-
-        
+        </div>        
     </header>
 
     <div class="content" id="content">
         @!section('content')
     </div>
-
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
 
     @!section('scripts')
 </body>

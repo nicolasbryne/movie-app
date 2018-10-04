@@ -1,5 +1,13 @@
 @layout('layout.template')
+
+@section('extracss')
+    {{style('login-popup')}}
+@endsection
+
 @section('content')
+
+    @!component('components.login-model')
+
     <div class="poster-container text-center">
         <div class="poster-wrap">
             <div class="poster_fakehover">
@@ -17,7 +25,7 @@
                                     In a self-destructing world, a vengeful Australian policeman sets out to stop a violent motorcycle gang
                                 </p>
                                 <a href="#" class="btn btn-red">Download</a>
-                                <a href="#" class="btn btn-default">Sign In</a>
+                                <a href="javascript:void(0)" class="btn btn-default" onclick="openLoginModal()";>Sign In</a>
 
                                 <div class='btn-container'>
                                     <ul class="action-btn">
@@ -154,4 +162,24 @@
             </div>
         </section>
     </main>
+@endsection
+
+@section('scripts')
+    {{script('login-popup')}}
+    <script>
+        let fixed = false;
+        $('document').ready(function(){
+            $('[data-toggle="tooltip"]').tooltip()
+            $('.isFixed').css("top", "-57px");
+        })
+        window.addEventListener('scroll', function(e){
+            if(document.documentElement.scrollTop > 100 && fixed === false){
+                $('.isFixed').css({'top': '0px', 'visibility': 'visible'});
+                fixed = true;
+            }else if(document.documentElement.scrollTop < 100 && fixed === true){
+                $('.isFixed').css("top", "-57px");
+                fixed = false;
+            }
+        })
+    </script>
 @endsection
