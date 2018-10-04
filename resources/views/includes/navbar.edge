@@ -9,9 +9,13 @@
         <div class="navbar-right">
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="/user-login">Login</a>
-                <a class="nav-item nav-link" href="#">Signup</a>
                 <a class="nav-item nav-link disabled" href="#">Contact</a>
+                @loggedIn
+                    <a class="nav-item nav-link" href="/user-login">{{auth.user.username}}</a>
+                @else
+                    <a class="nav-item nav-link" href="/user-login">Login</a>
+                    <a class="nav-item nav-link" href="#">Signup</a>
+                @endloggedIn
             </div>
         </div>
     </div>

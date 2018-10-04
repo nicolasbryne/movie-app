@@ -130,10 +130,18 @@
     display: inline-block; */
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     margin: 0 17px;
     padding: 10px 15px;
     border-radius: 5rem;
     font-weight: 500;
+
+    border-radius: 4px;
+    width: 90%;
+}
+
+.social a.circle:hover{
+    text-decoration: none;
 }
 
 .login .social .circle .fa{
@@ -144,7 +152,7 @@
     color: #FFFFFF;
 }
 .login .social .google{
-    background-color: #F74933;
+    background-color: #f73a4c;
 }
 .login .social .github{
     background-color: #403A3A;
@@ -153,7 +161,7 @@
     background-color: #6E83CD;
 }
 .login .google:hover{
-    background-color: #FF7566;
+    background-color: rgba(255, 37, 14, 0.6);
 }
 .login .github:hover{
     background-color: #4D4D4d;;

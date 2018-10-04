@@ -28,3 +28,7 @@ Route.get('/meta-item-full', 'MetadataItemController.joinMedia');
 
 Route.on('/front').render('save');
 Route.on('/user-login').render('loginform');
+Route.on('/registration').render('registration');
+
+Route.get('/login/google', 'GloginController.redirect')
+Route.get('/authenticated/google', 'GloginController.callback')
