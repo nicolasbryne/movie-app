@@ -17,6 +17,15 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome');
+
+Route.get('/user', 'UserController.profile');
+Route.post('/user/create', 'UserController.create');
+
+Route.get('/user/social', 'SocialProfileController.user')
+Route.get('/logout', 'UserController.logout');
+
+Route.get('/user/email', 'UserController.email');
+
 Route.get('/media-items', 'MediaItemController.list');
 Route.get('/media-item', 'MediaItemController.add');
 Route.get('/media-item-full', 'MediaItemController.joinMetadata');
@@ -26,9 +35,11 @@ Route.get('/media-save', 'MediaItemController.render');
 Route.get('/meta-item', 'MetadataItemController.mediaItem')
 Route.get('/meta-item-full', 'MetadataItemController.joinMedia');
 
-Route.on('/front').render('save');
+Route.on('/front').render('save').as('home');
 Route.on('/user-login').render('loginform');
 Route.on('/registration').render('registration');
 
+Route.post('/login', 'AuthController.login');
+
 Route.get('/login/google', 'GloginController.redirect')
-Route.get('/authenticated/google', 'GloginController.callback')
+Route.get('/authenticated/google', 'GloginController.callback');

@@ -14,35 +14,41 @@
                     </span>
                 </div>  -->
 
-                <form class="login100-form validate-form">
+                <form method="POST" action="{{ route('UserController.create') }}" class="login100-form validate-form">
+                    {{ csrfField() }}
                     <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
                         <span class="label-input100 label-register">Username</span>
-                        <input class="input100 input-register" type="text" name="username" placeholder="Enter username">
+                    <input class="input100 input-register" type="text" name="username" value="{{old('username', '')}}" placeholder="Enter username">
                         <span class="focus-input100"></span>
+                        {{ elIf('<span class="validation-error">$self</span>', getErrorFor('username'), hasErrorFor('username')) }}
                     </div>
 
                     <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
                         <span class="label-input100 label-register">Password</span>
-                        <input class="input100 input-register" type="password" name="pass" placeholder="Enter password">
+                        <input class="input100 input-register" type="password" name="password" placeholder="Enter password">
                         <span class="focus-input100"></span>
+                        {{ elIf('<span class="validation-error">$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
                     </div>
 
                     <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
                         <span class="label-input100 label-register">Retype Password</span>
-                        <input class="input100 input-register" type="password" name="repass" placeholder="Enter password">
+                        <input class="input100 input-register" type="password" name="password_confirmation" placeholder="Enter password">
                         <span class="focus-input100"></span>
+                        {{ elIf('<span class="validation-error">$self</span>', getErrorFor('password_confirmation'), hasErrorFor('password_confirmation')) }}
                     </div>
 
                     <div class="wrap-input100 validate-input m-b-26">
                         <span class="label-input100 label-register">Your Name</span>
-                        <input class="input100 input-register" type="text" name="name" placeholder="Enter you name">
+                        <input class="input100 input-register" type="text" name="name" value="{{old('name', '')}}" placeholder="Enter you name">
                         <span class="focus-input100"></span>
+                        {{ elIf('<span class="validation-error">$self</span>', getErrorFor('name'), hasErrorFor('name')) }}
                     </div>
 
                     <div class="wrap-input100 validate-input m-b-26">
                         <span class="label-input100 label-register">Email</span>
-                        <input class="input100 input-register" type="text" name="email" placeholder="Enter you name">
+                        <input required class="input100 input-register" type="text" name="email" value="{{old('email', '')}}" placeholder="Enter you name">
                         <span class="focus-input100"></span>
+                        {{ elIf('<span class="validation-error">$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
                     </div>
 
 

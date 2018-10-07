@@ -1,43 +1,61 @@
 'use strict'
+
 const User = use('App/Models/User');
 const Social = use('App/Models/SocialProfile');
-const Logger = use("Logger");
 
 class GloginController {
+
     async redirect ({ ally, auth }) {
-      if(auth) console.log(auth.user);
-      return
-      await ally.driver('google').redirect()
+      return auth.user ? 'Already Logged In' : await ally.driver('google').redirect();
     }
     
     async callback ({ request, response, ally, auth }) {
-      console.log('callback')
-      console.log(request.all());
+
       try {
-        console.log('here')
-        const googleUser = await ally.driver('google').getUser();
-        console.log('there')
-        // user details to be saved
-        const userDetails = {
-          //username: googleUser.getName(),
-          //password: '111111',
-          email: googleUser.getEmail(),
-          //token: googleUser.getAccessToken(),
-          login_source: 'google'
-        }
+        
+        const googleUser = await ally.driver('google').getUser();        
   
         // search for existing user
         const whereClause = {
-          email: googleUser.getEmail()
+          social_id: googleUser.getId()
         }
-        console.log(googleUser)
-        const user = await User.findOrCreate(whereClause, userDetails);
-        console.log(user)
-        console.log(googleUser.getId());
-        //const social = await Social.find(googleUser)
-        const authUser = await auth.login(user)
-  
-        return 'Logged in' + authUser
+
+        const socialProfile = await Social.findBy(whereClause);
+
+        if(!socialProfile){
+          //social profile to be saved
+          const socialDetails = {
+            social_id : googleUser.getId(),
+            name : googleUser.getName(),
+            email : googleUser.getEmail(),
+            nickname : googleUser.getNickname(),
+            avatar : googleUser.getAvatar(),
+            accessToken : googleUser.getAccessToken(),
+            refreshToken : googleUser.getRefreshToken(),
+            expires : googleUser.getExpires()
+          }
+
+          const socialUser = await Social.create(socialDetails);
+
+          // user details to be saved
+          const userDetails = {
+            email: googleUser.getEmail() + '.mm',
+            name : googleUser.getName(),
+            login_source: 'google'
+          }
+
+          const user = await User.findOrCreate({ email: googleUser.getEmail()+  '.mm' }, userDetails );
+
+          // associate social profile to created user account
+          await socialUser.user().associate(user);
+
+          await auth.login(user);
+          return 'Created && logged in';
+          
+        }else{
+          //check if already logged in or login user
+          return auth.user ? 'Already Logged In' : await auth.login(await socialProfile.user().fetch());
+        }
       } catch (error) {
         console.log(error);
         return 'Unable to Login'
