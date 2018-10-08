@@ -32,7 +32,7 @@
 
 * {
 	margin: 0px; 
-	padding: 0px; 
+	padding: 0px;
 	box-sizing: border-box;
 }
 
@@ -359,8 +359,8 @@ input.input100 {
 }
 
 .label-checkbox100::before {
-  content: "\f00c";
-  font-family: FontAwesome;
+  content: "\e033";
+  font-family: Icons;/* FontAwesome; */
   font-size: 13px;
   color: transparent;
 

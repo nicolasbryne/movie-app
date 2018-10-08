@@ -37,7 +37,7 @@ Route.get('/meta-item-full', 'MetadataItemController.joinMedia');
 
 Route.on('/front').render('save').as('home');
 Route.on('/user-login').render('loginform');
-Route.on('/registration').render('registration');
+Route.on('/registration').render('registration-success');
 
 Route.post('/login', 'AuthController.login');
 

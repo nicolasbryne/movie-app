@@ -1,0 +1,28 @@
+@layout('layout.template-slim')
+
+@section('extracss')
+    {{style('login')}}
+@endsection
+
+@section('content')
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="d-flex justify-content-center align-items-center" style="height: 60vh">
+                    <div class="p-5">
+                        <span class="d-block text-center"><ion-icon size="large" name="checkmark-circle" class="text-success"></ion-icon></span>
+                        <h5 class="text-center mb-3">Thanks for your registration</h5>
+                        <p>
+                            We send verification link to your email <span class="text-info">nicolasbryne@gmail.com</span>. Please check and verify your account to start using. 
+                            If you cannot find our verification message in your inbox, please search in spam folder.
+                        </p>
+                        <p class="mt-5">
+                            If verification message is not arrived, <a class="text-info" href="#">click here</a> to resend verification mail.
+                           {{--   <span class="mt-2 font-weight-light text-info">Contact: support@yoteshinportal.cc</span>  --}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
