@@ -3,6 +3,7 @@
 <head>
     @include('includes.head')
     {{style('dashboard')}}
+    {{style('login')}}
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 </head>
@@ -70,43 +71,128 @@
             </nav>
 
             <div class="container-fluid">
-
-                <div class="card bg-dark p-4">
+                <h4 class="mb-4"><i class="fas fa-archive mr-1"></i>Add Media</h4>
+                <div class="card bg-dark mb-5">
                     <div class="card-body">
-                        <div class="container-fluid">
-                            <div class="card-title">
-                                <h4>Add media</h4>
+                        
+                            <!--  <div class="card-title p-2">
+                                <h4 class="text-uppercase"><i class="fas fa-play-circle"></i> Add media</h4>
                                 <div class="text-muted small">@channelmyanmar</div>
+                            </div>  -->
+                            <div class="form-wrapper mt-4 mb-4">
+                                <ul class="nav nav-tabs bg-dark">
+                                    <li class="active text-center">
+                                        <a href="#movie" class="text-white" data-toggle="tab"><i class="fas fa-film mr-1"></i>Movies</a>
+                                    </li>
+                                    <li class="text-center">
+                                        <a href="#tv_show" class="text-white" data-toggle="tab"><i class="fas fa-tv mr-1"></i>TV Shows</a>
+                                    </li>
+                                </ul>
+                                
 
-                                <div class="form-wrapper mt-5">
-                                    <form>
-                                        <select class="form-control text-info">
-                                            <option>Movie</option>
-                                            <option>Series</option>
-                                        </select>
+                                <div class="tab-content mt-1 p-2">
+                                    <form id="movie" class="tab-pane show active">
 
                                         <div class="row">
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="title" class="font-weight-bold">Title</label>
-                                                        <input placeholder="Media title" name="title" class="form-control" type="text" />
-                                                    </div>
-                                                </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="size" class="font-weight-bold">Size</label>
+                                                    <label for="title" class="font-weight-normal">Movie Title</label>
+                                                    <input placeholder="Name of the movie" name="title" class="form-control" type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="title" class="font-weight-normal">Google Drive File</label>
+                                                    <input placeholder="Google drive export file" name="drive" class="form-control" type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="size" class="font-weight-normal">Size</label>
                                                     <input placeholder="Media size" name="size" class="form-control" type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="size" class="font-weight-normal">Audio</label>
+                                                    <select class="form-control">
+                                                        <option>2.1 Channels</option>
+                                                        <option>5.1 Channels</option>
+                                                        <option>7.1 Channels</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="size" class="font-weight-normal">Subtitle</label>
+                                                    <select class="form-control">
+                                                        <option class="p-1">Burmese</option>
+                                                        <option class="p-1">English</option>
+                                                        <option class="p-1">Other</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="d-flex justify-content-end">
-                                            <button class="btn btn-rounded btn-info text-uppercase">Submit</button>
+                                        <div class="d-flex justify-content-end mt-4">
+                                            <button class="btn btn-info font-weight-light">
+                                                <i class="fas fa-check mr-1"></i>Submit
+                                            </button>
                                         </div>
+                                    </form>
+
+                                    <form id="tv_show" class="tab-pane login100-form validate-form pb-5">
+                                            <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                                                <span class="label-input100">Series Title</span>
+                                                <input class="input100" type="text" name="title" placeholder="Enter series title">
+                                                <span class="focus-input100"></span>
+                                            </div>
+                        
+                                            <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+                                                <span class="label-input100">File location</span>
+                                                <input class="input100" type="text" name="location" placeholder="Enter drive url">
+                                                <span class="focus-input100"></span>
+                                            </div>
+                                
+                                            <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+                                                <span class="label-input100">Size</span>
+                                                <input class="input100" type="text" name="size" placeholder="Enter file size">
+                                                <span class="focus-input100"></span>
+                                            </div>
+                                        
+                                        
+                                            <div class="wrap-input100 validate-input m-b-18 border-bottom-0" data-validate = "Password is required">
+                                                <span class="label-input100">Audio</span>
+                                                <select class="form-control">
+                                                    <option>2.1 Channels</option>
+                                                    <option>5.1 Channels</option>
+                                                    <option>7.1 Channels</option>
+                                                </select>           
+                                            </div>
+                                            
+                                            
+                                            <div class="wrap-input100 validate-input m-b-18 border-bottom-0" data-validate = "Password is required">
+                                                <span class="label-input100">Subtitle</span>
+                                                <select class="form-control">
+                                                    <option>Burmese</option>
+                                                    <option>English</option>
+                                                    <option>Others</option>
+                                                </select>           
+                                            </div>
+                                            
+                                        
+
+                                        <div class="d-flex justify-content-end mt-4">
+                                            <button class="btn btn-info font-weight-light">
+                                                <i class="fas fa-check mr-1"></i>Submit
+                                            </button>
+                                        </div>
+
                                     </form>
                                 </div>
                             </div>
-                        </div>
+                            
+                        
                     </div>
                 </div>
             </div>

@@ -95,6 +95,9 @@ a, a:hover, a:focus {
     position: absolute;
     top: 0;
     right: 0;
+    background-image: url(https://livedemo00.template-help.com/wt_55018/images/parallax1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 #content.active {
     width: 100%;
@@ -118,3 +121,24 @@ a, a:hover, a:focus {
     font-size: 2rem;
 }
 
+
+.nav-tabs {
+    border: none;
+    background: #262e35;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    width: 360px;
+}
+
+.nav-tabs > li {
+    padding: 1rem;
+    width: 50%;
+    /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */
+}
+.nav-tabs > li.active {
+    background-color: rgba(0, 0, 0, 0.15)
+}
+
+.bg-dark{
+    background-color: #212529!important
+}

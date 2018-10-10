@@ -8,7 +8,7 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-                <form method="POST" action="{{route('AuthController.login')}}") class="login100-form validate-form">
+                <form method="POST" action="{{route('AuthController.login')}}" class="login100-form validate-form">
                     {{csrfField()}}
                     @if(hasErrorFor('login_error'))
                         <span class="validate-error">{{ getErrorFor('login_error') }}</span>
