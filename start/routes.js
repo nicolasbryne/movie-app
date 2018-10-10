@@ -43,3 +43,5 @@ Route.post('/login', 'AuthController.login');
 
 Route.get('/login/google', 'GloginController.redirect')
 Route.get('/authenticated/google', 'GloginController.callback');
+
+Route.on('/dashboard').render('dashboard.admin')

@@ -241,10 +241,10 @@ a.btn-circle{
     line-height: 30px;
     font-weight: 100;
 }
-* + .btn{
+* + .btn-rounded{
     margin-top: 30px;
 }
-.btn {
+.btn-rounded {
     display: inline-block;
     font-weight: 300;
     cursor: pointer;
