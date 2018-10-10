@@ -45,3 +45,4 @@ Route.get('/login/google', 'GloginController.redirect')
 Route.get('/authenticated/google', 'GloginController.callback');
 
 Route.on('/dashboard').render('dashboard.admin')
+Route.on('/dashboard/add').render('dashboard.add-media')
