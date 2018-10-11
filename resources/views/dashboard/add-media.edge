@@ -71,8 +71,11 @@
             </nav>
 
             <div class="container-fluid">
-                <h4 class="mb-4"><i class="fas fa-archive mr-1"></i>Add Media</h4>
+                
                 <div class="card bg-dark mb-5">
+                    <div class="card-header text-light">
+                        <i class="fas fa-video mr-2"></i>Add Media
+                    </div>
                     <div class="card-body">
                         
                             <!--  <div class="card-title p-2">
@@ -142,6 +145,22 @@
                                     </form>
 
                                     <form id="tv_show" class="tab-pane login100-form validate-form pb-5">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="wrap-input100 validate-input m-b-26 mr-4" data-validate="Username is required">
+                                                        <span class="label-input100">Series Title</span>
+                                                        <input class="input100" type="text" name="title" placeholder="Enter series title">
+                                                        <span class="focus-input100"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4 offset-2">
+                                                    <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                                                        <span class="label-input100">Episode No</span>
+                                                        <input class="input100" type="number" name="title" placeholder="Enter episode no">
+                                                        <span class="focus-input100"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
                                                 <span class="label-input100">Series Title</span>
                                                 <input class="input100" type="text" name="title" placeholder="Enter series title">
@@ -159,11 +178,26 @@
                                                 <input class="input100" type="text" name="size" placeholder="Enter file size">
                                                 <span class="focus-input100"></span>
                                             </div>
+
+                                            <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+                                                <span class="label-input100">Encoded by</span>
+                                                <input class="input100" type="text" name="size" placeholder="Enter encoder name">
+                                                <span class="focus-input100"></span>
+                                            </div>
                                         
                                         
                                             <div class="wrap-input100 validate-input m-b-18 border-bottom-0" data-validate = "Password is required">
+                                                <span class="label-input100">Resolution</span>
+                                                <select class="form-control rounded-0">
+                                                    <option>1080p</option>
+                                                    <option>720p</option>
+                                                    <option>480p</option>
+                                                </select>           
+                                            </div>
+
+                                            <div class="wrap-input100 validate-input m-b-18 border-bottom-0" data-validate = "Password is required">
                                                 <span class="label-input100">Audio</span>
-                                                <select class="form-control">
+                                                <select class="form-control rounded-0">
                                                     <option>2.1 Channels</option>
                                                     <option>5.1 Channels</option>
                                                     <option>7.1 Channels</option>
@@ -173,7 +207,7 @@
                                             
                                             <div class="wrap-input100 validate-input m-b-18 border-bottom-0" data-validate = "Password is required">
                                                 <span class="label-input100">Subtitle</span>
-                                                <select class="form-control">
+                                                <select class="form-control rounded-0">
                                                     <option>Burmese</option>
                                                     <option>English</option>
                                                     <option>Others</option>
