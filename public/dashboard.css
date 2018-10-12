@@ -142,12 +142,93 @@ a, a:hover, a:focus {
 .bg-dark{
     background-color: #212529!important
 }
+
+.media-table{
+    display: block;
+}
+
+.media-table > tbody{
+    width: 100%;
+    display: block;
+}
 .t-row {
+    display: flex;
     cursor: pointer;
+    transition: all 0.2s ease;
 }
 .t-row:hover{
-    box-shadow: -1px 4px 4px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: inset 1px 0 0 rgba(255,255,255,0.2), inset -1px 0 0 rgba(255,255,255,0.2), 0 0 4px 0 rgba(95,99,104,.6), 0 0 6px 2px rgba(95,99,104,.6);
     z-index: 1;
-    background-color: rgba(0,0,0,0.15);
+    background-color: rgba(0, 0, 0, 0.05);
     z-index: 1;
+}
+
+.t-row:hover > td.action-wrapper{
+    display: flex;
+}
+
+.t-row:hover > td.td-timestamp{
+    display: none;
+}
+td.icon {
+    transition: color 0.2s ease;
+}
+.t-row:hover > td.icon {
+    color: #fff!important;
+}
+table.media-table td {
+    border-color: rgba(255, 255, 255, 0.05);
+    color: rgba(255,255,255,0.70)
+}
+
+td.title{
+    flex-basis: 400px;
+    max-width: 400px;
+    padding-right: 32px;
+}
+
+td.title > div {
+    display: flex;
+    flex-grow: 1;
+}
+
+td.year ,td.resolution, td.audio, td.size, td.url, td.timestamp {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+td.year, td.resolution, td.audio{
+    flex-basis: 80px;
+    max-width: 80px;
+}
+
+.td-timestamp {
+    /* max-width: 56px; */
+    /* flex-basis: 56px; */
+    /* letter-spacing: 0.4px; */
+}
+
+.action-wrapper {
+    display: none;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.btn-action{
+    background-color: transparent;
+    padding: 0 0.375rem;
+    transition: all 0.2s ease;
+}
+
+.btn-action:hover{
+    color: var(--light)!important;
+}
+
+.select-transparent{
+    background: transparent!important;
+    border: none;
+}
+
+.select-transparent > option {
+    background: var(--secondary)
 }

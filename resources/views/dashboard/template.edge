@@ -71,36 +71,93 @@
             </nav>
 
             
-               
-                <table class="table table-dark font-weight-light">
+               <div class="container-fluid">
+                   <h4 class="mb-4"><i class="fa fa-link mr-1"></i>Manage Links</h4>
+               </div>
+               <div class="card bg-dark">
+                   <div class="card-body pb-1 pt-1">
+                       <div class="container-fluid">
+                           <div class="filter-wrapper d-flex align-items-center">
+                            <span class="font-weight-light">Filter</span>
+                                <div class="ml-auto" style="flex-basis: 200px">
+                                    <div class="row align-items-center">
+                                        <div class="col-4 pr-0">
+                                            <label for="sort_by" class="small text-muted text-right"><i class="fa fa-sort mr-1"></i>Sort by</label>
+                                        </div> 
+                                        <div class="col-8">
+                                            <select name="sort_by" class="form-control rounded-0 select-transparent text-light">
+                                                <option>Acending</option>
+                                                <option>Decending</option>
+                                                <option>Date</option>
+                                            </select>
+                                        </div>   
+                                    </div>                            
+                                    
+                                    
+                                </div>
+                            </div>
+                       </div>
+                   </div>
+               </div>
+                <table class="table table-dark font-weight-light media-table">
                     <tbody>
                         <tr class="position-relative t-row">
-                          <th scope="row">1</th>
-                          <td>Now you see me 2</td>
-                          <td>2016</td>
-                          <td>1080P</td>
-                          <td>5.1ch</td>
-                          <td>2.3Gb</td>
-                          <td>10:26PM</td>
-                        </tr>
+                        <td class="icon text-muted"><i class="fas fa-ellipsis-v"></i></td>
+                          <td>1</td>
+                          <td class="title">
+                              <div>Now you see me 2</div></td>
+                          <td class="year">2016</td>
+                          <td class="resolution">1080P</td>
+                          <td class="audio">5.1ch</td>
+                          <td class="size">2.3Gb</td>
+                          <td class="td-timestamp font-weight-normal mr-2">Oct 10</td>
+                          <td class="action-wrapper">
+                              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Open"><i class="fa fa-external-link-alt"></i></span>
+                              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Copy link"><i class="fa fa-copy"></i></span>
+                              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye"></i></span>
+                              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-edit"></i></span>
+                              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fa fa-trash"></i></span>
+                              
+                          </td>         
+                        </tr>                                             
                         <tr class="position-relative t-row">
-                          <th scope="row">2</th>
-                          <td>Now you see me 2</td>
-                          <td>2016</td>
-                          <td>1080P</td>
-                          <td>5.1ch</td>
-                          <td>2.3Gb</td>
-                          <td>10:26PM</td>
-                        </tr>
+                        <td class="icon text-muted"><i class="fas fa-ellipsis-v"></i></td>
+                          <td>2</td>
+                          <td class="title">
+                              <div>Furious 7</div></td>
+                          <td class="year">2015</td>
+                          <td class="resolution">1080P</td>
+                          <td class="audio">2.1ch</td>
+                          <td class="size">1.1Gb</td>
+                          <td class="td-timestamp font-weight-normal mr-2">Oct 10</td>
+                          <td class="action-wrapper">
+                              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Open"><i class="fa fa-external-link-alt"></i></span>
+                              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Copy link"><i class="fa fa-copy"></i></span>
+                              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye"></i></span>
+                              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-edit"></i></span>
+                              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fa fa-trash"></i></span>
+                              
+                          </td>        
+                        </tr>                                             
                         <tr class="position-relative t-row">
-                          <th scope="row">3</th>
-                          <td>Now you see me 2</td>
-                          <td>2016</td>
-                          <td>1080P</td>
-                          <td>5.1ch</td>
-                          <td>2.3Gb</td>
-                          <td>10:26PM</td>
-                        </tr>
+                            <td class="icon text-muted"><i class="fas fa-ellipsis-v"></i></td>
+                          <td>3</td>
+                          <td class="title">
+                              <div>Captain America:Civil War</div></td>
+                          <td class="year">2017</td>
+                          <td class="resolution">1080P</td>
+                          <td class="audio">5.1ch</td>
+                          <td class="size">3.0Gb</td>
+                          <td class="td-timestamp font-weight-normal mr-2">Oct 10</td>
+                          <td class="action-wrapper">
+                              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Open"><i class="fa fa-external-link-alt"></i></span>
+                              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Copy link"><i class="fa fa-copy"></i></span>
+                              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye"></i></span>
+                              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-edit"></i></span>
+                              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fa fa-trash"></i></span>
+                              
+                          </td>         
+                        </tr>                                             
                         
                       </tbody>
                 </table>
@@ -113,6 +170,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <script>
         $(document).ready(function () {
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
 
         $("#sidebar").mCustomScrollbar({
             theme: "minimal"
