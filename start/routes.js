@@ -46,3 +46,4 @@ Route.get('/authenticated/google', 'GloginController.callback');
 
 Route.on('/dashboard').render('dashboard.admin')
 Route.on('/dashboard/add').render('dashboard.add-media')
+Route.on('/dashboard/media').render('dashboard.template')
