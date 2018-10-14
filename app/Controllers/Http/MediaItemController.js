@@ -6,6 +6,26 @@ const images  = Config.get('local.images');
 
 class MediaItemController {
 
+    async index() {
+        return ({status : 'success'})
+    }
+
+    async create({ view }) {
+        return view.render('dashboard.media', { breadcrumb : 'Media', icon : 'video' });
+    }
+
+    async store( { request } ) {
+
+        // To add validation logic here
+
+        const inputs = request.only(
+            ['title', 'type_id', 'ep', 'drive', 'size', 'encoded_by', 'resolution', 'audio_channels', 'format', 'subtitle']
+        )
+        //console.log(inputs)
+        const media = await Media.create(inputs);
+        return ({ status : 'success' });
+    }
+
     async list(){
         return await Media.all();
     }

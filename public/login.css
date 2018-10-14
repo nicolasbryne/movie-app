@@ -42,7 +42,7 @@
 } */
 
 /*---------------------------------------------*/
-a {
+.wrap-login100 a {
 	/* font-family: Poppins-Regular; */
 	font-size: 14px;
 	line-height: 1.7;
@@ -54,11 +54,11 @@ a {
   -moz-transition: all 0.4s;
 }
 
-a:focus {
+.wrap-login100 a:focus {
 	outline: none !important;
 }
 
-a:hover {
+.wrap-login100 a:hover {
 	text-decoration: none;
   color: #57b846;
 }

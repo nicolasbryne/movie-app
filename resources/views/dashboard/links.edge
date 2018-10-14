@@ -1,0 +1,123 @@
+@layout('dashboard.template')
+
+@section('content')
+
+<div class="container-fluid mt-4">
+
+
+  <div class="card bg-dark mb-2">
+    <div class="card-body pb-1 pt-1">
+      <div class="container-fluid">
+        <div class="filter-wrapper d-flex align-items-center">
+          <span class="font-weight-light">Filter</span>
+          <div class="ml-auto" style="flex-basis: 200px">
+            <div class="row align-items-center">
+              <div class="col-4 pr-0">
+                <label for="sort_by" class="small text-muted text-right"><i class="fa fa-sort mr-1"></i>Sort by</label>
+              </div>
+              <div class="col-8">
+                <select name="sort_by" class="sort_by form-control rounded-0 select-transparent text-trans">
+                  <option>Date</option>
+                  <option>Name</option>
+                  <option>Most view</option>
+                </select>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card bg-dark">
+    <div class="card-header">
+      <span class="small text-trans">Showing 20 results of 240</span>
+    </div>
+    <div class="card-body px-0 pt-0">
+      <table class="table table-dark font-weight-light media-table">
+        <tbody>
+          <tr class="position-relative t-row t-head">
+            <td class="icon text-muted"><i class="fa fa-square"></i></td>
+            <td class="id font-weight-bold text-uppercase">ID</td>
+            <td class="title font-weight-bold text-uppercase">
+              <div>Title</div>
+            </td>
+            <td class="year font-weight-bold text-uppercase">Year</td>
+            <td class="resolution font-weight-bold text-uppercase">Video</td>
+            <td class="audio font-weight-bold text-uppercase">Audio</td>
+            <td class="size font-weight-bold text-uppercase">Size</td>
+            <td class="views font-weight-bold text-uppercase">Views</td>
+            <td class="td-timestamp mr-2 font-weight-bold text-uppercase">Date</td>
+
+          </tr>
+          <tr class="position-relative t-row">
+            <td class="icon text-muted"><i class="fas fa-ellipsis-v"></i></td>
+            <td class="id">1</td>
+            <td class="title">
+              <div>Now you see me 2</div>
+            </td>
+            <td class="year">2016</td>
+            <td class="resolution">1080P</td>
+            <td class="audio">5.1ch</td>
+            <td class="size">2.3Gb</td>
+            <td class="views">9245</td>
+            <td class="td-timestamp font-weight-normal mr-2">Oct 10</td>
+            <td class="action-wrapper">
+              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Open"><i class="fa fa-external-link-alt"></i></span>
+              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Copy link"><i class="fa fa-copy"></i></span>
+              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye"></i></span>
+              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-edit"></i></span>
+              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fa fa-trash"></i></span>
+
+            </td>
+          </tr>
+          <tr class="position-relative t-row">
+            <td class="icon text-muted"><i class="fas fa-ellipsis-v"></i></td>
+            <td class="id">2</td>
+            <td class="title">
+              <div>Furious 7</div>
+            </td>
+            <td class="year">2015</td>
+            <td class="resolution">1080P</td>
+            <td class="audio">2.1ch</td>
+            <td class="size">1.1Gb</td>
+            <td class="views">1828</td>
+            <td class="td-timestamp font-weight-normal mr-2">Oct 10</td>
+            <td class="action-wrapper">
+              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Open"><i class="fa fa-external-link-alt"></i></span>
+              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Copy link"><i class="fa fa-copy"></i></span>
+              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye"></i></span>
+              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-edit"></i></span>
+              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fa fa-trash"></i></span>
+
+            </td>
+          </tr>
+          <tr class="position-relative t-row">
+            <td class="icon text-muted"><i class="fas fa-ellipsis-v"></i></td>
+            <td class="id">3</td>
+            <td class="title">
+              <div>Captain America:Civil War</div>
+            </td>
+            <td class="year">2017</td>
+            <td class="resolution">1080P</td>
+            <td class="audio">5.1ch</td>
+            <td class="size">3.0Gb</td>
+            <td class="views">98445</td>
+            <td class="td-timestamp font-weight-normal mr-2">Oct 10</td>
+            <td class="action-wrapper">
+              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Open"><i class="fa fa-external-link-alt"></i></span>
+              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Copy link"><i class="fa fa-copy"></i></span>
+              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="View"><i class="fa fa-eye"></i></span>
+              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Edit"><i class="fa fa-edit"></i></span>
+              <span class="btn-action mr-1" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fa fa-trash"></i></span>
+
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+@endsection

@@ -6,7 +6,7 @@ class AuthController {
         const { email, password } = request.all();
         try{
             await auth.attempt(email, password);
-            return response.route('home');
+            return response.route('/dashboard');
         }catch(e){
             session.withErrors({ login_error : 'Invalid username or password' }).flashAll();
             return response.redirect('back');
