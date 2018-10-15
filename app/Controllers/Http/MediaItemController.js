@@ -16,7 +16,7 @@ class MediaItemController {
         return view.render('dashboard.media', { breadcrumb : 'Media', icon : 'video' });
     }
 
-    async store( { request } ) {
+    async store( { request, response } ) {
 
         // To add validation logic here
 
@@ -24,9 +24,9 @@ class MediaItemController {
             ['title', 'type_id', 'ep', 'drive', 'size', 'encoded_by', 'resolution', 'audio_channels', 'format', 'subtitle']
         )
 
-        const validation = await validate(inputs, { title : 'required'});
+        const validation = await validate(inputs, { title : 'required', size : 'required' });
         if(validation.fails()) { 
-            return ({ status : 'fail' })
+            return response.status(403).send({ status : 'fail' })
         }
         
         const media = await Media.create(inputs);
