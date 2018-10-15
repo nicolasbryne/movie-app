@@ -1,4 +1,6 @@
 'use strict'
+
+const { validate } = use('Validator')
 const Config = use('Config');
 const Media = use('App/Models/MediaItem');
 
@@ -21,7 +23,12 @@ class MediaItemController {
         const inputs = request.only(
             ['title', 'type_id', 'ep', 'drive', 'size', 'encoded_by', 'resolution', 'audio_channels', 'format', 'subtitle']
         )
-        //console.log(inputs)
+
+        const validation = await validate(inputs, { title : 'required'});
+        if(validation.fails()) { 
+            return ({ status : 'fail' })
+        }
+        
         const media = await Media.create(inputs);
         return ({ status : 'success' });
     }

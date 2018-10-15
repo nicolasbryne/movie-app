@@ -328,3 +328,22 @@ td.year, td.resolution, td.audio{
 .btn-transparent {
     background-color: transparent;
 }
+
+
+.input100.form-control{
+    border: none;
+    border-radius: 0;
+}
+.input100.form-control:focus {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.input100.form-control:invalid:focus {
+    background-color: transparent;
+    box-shadow: none;
+}
+.input100.form-control:valid:focus {
+    background-color: transparent;
+    box-shadow: none;
+}

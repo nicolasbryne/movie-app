@@ -21,32 +21,33 @@
 
 
         <div class="tab-content mt-1 p-2">
-          <form id="movie" class="tab-pane login100-form validate-form pb-5 active show needs-validation" novalidate>
+          <form id="movie" class="tab-pane login100-form validate-form pb-5 active show" novalidate="">
               {{ csrfField() }}
               <input type="hidden" value=1 name="type_id" />
               <div class="wrap-input100 validate-input m-b-26 mr-4" data-validate="Username is required">
                 <span class="label-input100">Movie Title</span>
-                <input class="input100" type="text" name="title" placeholder="Enter movie title" required>
-                <div class="invalid-tooltip">
-                  Please provide a valid state.
-                </div>
+                <input class="form-control input100" type="text" name="title" id="validationCustom01" placeholder="Enter movie title" required>
                 <span class="focus-input100"></span>
+                <div class="valid-feedback pb-1">Ok</div>
+                <div class="invalid-feedback pb-1">Movie title is required</div>
               </div>
               <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
                 <span class="label-input100">File location</span>
-                <input class="input100" type="text" name="drive" placeholder="Enter drive url">
+                <input class="form-control input100" type="text" name="drive" placeholder="Enter drive url" required>
                 <span class="focus-input100"></span>
+                <div class="valid-feedback pb-1">Ok</div>
+                <div class="invalid-feedback pb-1">Google Drive URL is required</div>
               </div>
   
               <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
                 <span class="label-input100">Size</span>
-                <input class="input100" type="text" name="size" placeholder="Enter file size">
+                <input class="form-control input100" type="text" name="size" placeholder="Enter file size">
                 <span class="focus-input100"></span>
               </div>
   
               <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
                 <span class="label-input100">Encoded by</span>
-                <input class="input100" type="text" name="encoded_by" placeholder="Enter encoder name">
+                <input class="form-control input100" type="text" name="encoded_by" placeholder="Enter encoder name">
                 <span class="focus-input100"></span>
               </div>
   
@@ -79,7 +80,7 @@
                 </select>
               </div>
               <div class="d-flex justify-content-end mt-4">
-                <button class="btn btn-info font-weight-light">
+                <button class="btn btn-info font-weight-light" id="btnSubmit">
                   <i class="fas fa-check mr-1"></i>Submit
                 </button>
               </div>
@@ -168,24 +169,4 @@
 
 @section('extrascript')
    {{script('https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js')}}
-   <script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function() {
-      'use strict';
-      window.addEventListener('load', function() {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-        // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function(form) {
-          form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-          }, false);
-        });
-      }, false);
-    })();
-    </script>
 @endsection
