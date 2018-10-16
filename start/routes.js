@@ -53,4 +53,4 @@ Route.group( ()=> {
     Route.on('/').render('dashboard.home', { breadcrumb : 'Home', icon : 'chart-line'});
     Route.on('links').render('dashboard.links', { breadcrumb : 'Manage Links', icon : 'link' });
     Route.resource('media-items', 'MediaItemController');
-}).prefix('dashboard').middleware('auth');
+}).prefix('dashboard')
