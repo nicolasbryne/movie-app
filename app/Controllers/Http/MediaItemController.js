@@ -13,14 +13,17 @@ class MediaItemController {
     async index({ request, params, view }) {
         const numLinks = 5 // number of links to be created by paginate
         const perPage = 5
-        const url = Env.get('APP_URL') + '/dashboard/media-items?page=';
-
+        const url = `${Env.get('APP_URL')}/dashboard/media-items?page=`;
         const page = Number(request.input('page')) || 1;
-        console.log(page)
         const mediaItems = await Media.query().paginate(page, 5);
         const paginate = paginator(numLinks, page, perPage, mediaItems.toJSON().total, url);
-        console.log(paginate)
-        return view.render('dashboard.media-items', { breadcrumb : 'Manage Links', icon : "link", mediaItems : mediaItems.toJSON(), paginate })
+
+        return view.render('dashboard.media-items', { 
+            breadcrumb : 'Manage Links', 
+            icon : "link", 
+            mediaItems : mediaItems.toJSON(), 
+            paginate 
+        });
     }
 
     async create({ view }) {
@@ -29,13 +32,17 @@ class MediaItemController {
 
     async store( { request, response } ) {
 
-        // To add validation logic here
-
         const inputs = request.only(
             ['title', 'type_id', 'episode', 'drive', 'size', 'encoded_by', 'resolution', 'audio_channels', 'format', 'subtitle']
         )
 
-        const validation = await validate(inputs, { title : 'required', size : 'required' });
+        // To add validation logic here
+        const rules = {
+            title : 'required', 
+            size : 'required'
+        }
+
+        const validation = await validate(inputs, rules);
         if(validation.fails()) { 
             return response.status(403).send({ status : 'fail' })
         }

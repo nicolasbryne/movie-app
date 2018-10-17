@@ -362,3 +362,107 @@ td.year, td.resolution, td.audio{
 .paginate a.page-link:hover{
     color: #fff;
 }
+
+
+/*CSS FOR TMDB AUTOCOMPLETE*/
+
+.dark-scrollbar::-webkit-scrollbar-track
+{
+    background-color: #d4d4d4;
+}
+
+.dark-scrollbar::-webkit-scrollbar
+{
+    width: 15px;
+    /*background-color: #F5F5F5;*/
+}
+
+.dark-scrollbar::-webkit-scrollbar-thumb
+{
+    min-height: 50px;
+    background-color: hsla(0, 0%, 0%, 0.33);
+    border: 3px solid transparent;
+    border-radius: 8px;
+    background-clip: padding-box;
+}
+        
+.title-input-container{
+    position: relative;
+}
+.autocomplete-container{
+    position: absolute;
+    margin-top: 4px;
+    width: 100%;
+    max-height: 450px;
+    overflow-y: auto;
+    display: none;
+    font-size: 13px;
+    background: #efefef;
+    color: #000;
+    border-radius: 0.4rem;
+    border: 1px solid #4a4a4a;
+    padding: 6px;
+    z-index: 100;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.32);
+}
+.search-text-display {
+    padding: 10px 4px;
+    font-weight: 400;
+}
+.search-icon {
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 0.8rem;
+    padding: 2px 12px;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: rgba(225,225,225,0.5);
+}
+.autocomplete-item{
+    display: block;
+    color: #d0d0d0;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.autocomplete-item:hover{
+    /* color: #fff; */
+    text-decoration: none;
+    background-color: #dce0e0;
+}
+.autocomplete-list{
+    padding: 0;
+    list-style: none;
+}
+.autocomplete-list-item{
+    margin-top: 2px;
+    margin-bottom: 5px;
+
+}
+.autocomplete-display-holder{
+    display: flex;
+}
+.list-item-block{
+    display: inline-flex;
+}
+.list-item-block.poster{
+    width: 60px;
+    height: 80px;
+    background-color: rgba(0,0,0,0.2);
+    background-size: cover;
+    background-position: center;
+    border-radius: .25rem;
+    /*background-image: url('http://image.tmdb.org/t/p/w92/hU0E130tsGdsYa4K9lc3Xrn5Wyt.jpg')*/
+}
+.list-item-block.text{
+    display: block;
+    margin-left: 8px;
+    font-weight: 300;
+}
+.list-item-block.text .title{
+    font-weight: 300;
+}
+
+.list-item-block.text .year{
+    font-weight: 300;
+    color: rgba(225,225,225,0.4)
+}

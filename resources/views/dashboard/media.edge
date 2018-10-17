@@ -26,11 +26,30 @@
               <input type="hidden" value=1 name="type_id" />
               <div class="wrap-input100 validate-input m-b-26 mr-4">
                 <span class="label-input100">Movie Title</span>
-                <input class="form-control input100 text-light" type="text" name="title" id="validationCustom01" placeholder="Enter movie title" required>
+                <input autocomplete="off" id="movie_title" onFocus="tmdbShow()" onBlur="tmdbHide()" class="form-control input100 text-light" type="text" name="title" id="validationCustom01" placeholder="Enter movie title" required>
                 <span class="focus-input100"></span>
                 <div class="valid-feedback pb-1">Finished</div>
                 <div class="invalid-feedback pb-1">Movie title is required</div>
+
+                <div id="autocomplete" class="autocomplete-container dark-scrollbar">
+                  <div class="search-text-display d-flex align-items-center">
+                      Search &nbsp <span id="data-bind">on Tmdb</span>
+                      <div class="ml-auto search-icon text-dark">
+                          Enter &crarr;
+                      </div>
+                  </div>
+                  <ul class="autocomplete-list" id="search">
+                      
+                  </ul>
+                </div>
               </div>
+
+              <div class="wrap-input100 validate-input m-b-18">
+                <span class="label-input100">Tmdb ID</span>
+                <input class="form-control input100 text-light" type="text" name="tmdb_id" placeholder="Enter tmdb Id" required>
+                <span class="focus-input100"></span>
+              </div>
+
               <div class="wrap-input100 validate-input m-b-18">
                 <span class="label-input100">File location</span>
                 <input class="form-control input100 text-light" type="text" name="drive" placeholder="Enter drive url" required>

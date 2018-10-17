@@ -1,0 +1,1006 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: nicolas
+ * Date: 9/8/2016
+ * Time: 10:54 PM
+ */
+include "authcheck.php";
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="https://yoteshinportal.org/" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <meta charset="UTF-8">
+    <title>Admin - Movie Portal</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600|Patua+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://yoteshinportal.org/show/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesome-bootstrap-checkbox/0.3.7/awesome-bootstrap-checkbox.min.css">
+    <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css" integrity="sha384-Wrgq82RsEean5tP3NK3zWAemiNEXofJsTwTyHmNb/iL3dP/sZJ4+7sOld1uqYJtE" crossorigin="anonymous">
+    <style>
+        .progress {
+            display: none;
+            margin-top: 60px;
+            width: 100%;
+            background: #ff3d3d/*#009688*//*#28C76F*/;
+            height: 5px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            animation: progress 1.5s infinite;
+        }
+
+        @keyframes progress {
+            0% { width: 0; left: 0 }
+            50% { width: 100%; left: 0 }
+            100% { width: 0; left: 100% }
+        }
+        .dark-scrollbar::-webkit-scrollbar-track
+        {
+            background-color: rgba(0,0,0,.2);
+        }
+
+        .dark-scrollbar::-webkit-scrollbar
+        {
+            width: 15px;
+            /*background-color: #F5F5F5;*/
+        }
+
+        .dark-scrollbar::-webkit-scrollbar-thumb
+        {
+            min-height: 50px;
+            background-color: hsla(0,0%,100%,.15);
+            border: 3px solid transparent;
+            border-radius: 8px;
+            background-clip: padding-box;
+        }
+        body{
+            font-family: "Open Sans",Helvetica Neue,Helvetica,Arial,sans-serif;
+        }
+        .quality-checkbox{
+            line-height: 1.4;
+            color: #009688;
+        }
+        .checkbox input[type="checkbox"], .checkbox input[type="radio"] {
+            width: 130px;
+        }
+        .org_reso{
+            display: inline-block;
+        }
+        .new-btn{
+            padding-left: 15px;
+            padding-right: 10px;
+            border-radius: 0;
+            margin-left: 18px;
+        }
+
+        /*CSS FOR ADDITIONAL FEATURES*/
+        
+        .title-input-container{
+            position: relative;
+        }
+        .autocomplete-container{
+            position: absolute;
+            margin-top: 4px;
+            width: 600px;
+            max-height: 450px;
+            overflow-y: auto;
+            display: none;
+            font-size: 13px;
+            background: rgb(35,35,35);
+            color: #fff;
+            border-radius: 0.4rem;
+            padding: 6px;
+            z-index: 100;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+        .search-text-display {
+            padding: 10px 4px;
+            font-weight: 600;
+        }
+        .search-icon {
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            border-radius: 0.8rem;
+            padding: 2px 12px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: rgba(225,225,225,0.5);
+        }
+        .autocomplete-item{
+            display: block;
+            color: #d0d0d0;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .autocomplete-item:hover{
+            color: #fff;
+            text-decoration: none;
+            background-color: rgba(0,0,0,0.2);
+        }
+        .autocomplete-list{
+            padding: 0;
+            list-style: none;
+        }
+        .autocomplete-list-item{
+            margin-top: 2px;
+            margin-bottom: 5px;
+
+        }
+        .autocomplete-display-holder{
+            display: flex;
+        }
+        .list-item-block{
+            display: inline-flex;
+        }
+        .list-item-block.poster{
+            width: 60px;
+            height: 80px;
+            background-color: rgba(0,0,0,0.2);
+            background-size: cover;
+            background-position: center;
+            /*background-image: url('http://image.tmdb.org/t/p/w92/hU0E130tsGdsYa4K9lc3Xrn5Wyt.jpg')*/
+        }
+        .list-item-block.text{
+            display: block;
+            margin-left: 8px;
+            font-weight: 500;
+        }
+        .list-item-block.text .title{
+            font-weight: 600;
+        }
+
+        .list-item-block.text .year{
+            color: rgba(225,225,225,0.4)
+        }
+
+
+        /*CSS for overlay*/
+        .new-overlay{
+            position: fixed;
+            top:0;bottom:0;right:0;left:0;
+            background: #1e1e1e;
+            opacity: 0.9;
+            display: none;
+        }
+        .drive-container{
+            position:absolute;
+            left:0;right:0;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 1s ease;
+            display: none;
+        }
+        
+        .drive-icon, .photo-icon{
+            display: inline-block;
+            padding-left: 20px;
+            padding-right: 20px;
+            width: 450px;
+            text-align: center;
+        }
+        .g-p-container{
+            width:1000px;
+            margin: auto;
+        }
+        .icon-g-p-s{
+            transition: all 1s ease;
+            width:100px;
+            margin-top: 100px;
+            margin-left: 100px;
+        }
+        .icon-p-l{
+            margin-top: 0px;
+            margin-left: 0px;
+            width: 250px;
+        }
+        .icon-g-l{
+            margin-top: 0px;
+            margin-left: 0px;
+            width: 450px;
+        }
+        .icon-g-p-same{
+            width: 300px;
+        }
+
+        .logout a:hover{
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body class="bodyback">
+<div class="navbar headerbar">
+    <div class="container">
+        <div class="navbar-header">
+            <div class="navbar-brand">
+                YOTESHINPORTAL.COM
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 pull-right logout">
+            <a href="https://yoteshinportal.org/admin/setting/">
+                <span class="glyphicon glyphicon-usd">&ensp;Adfly Key</span>
+            </a>&ensp;&ensp;
+            <a href="https://yoteshinportal.org/admin/myaccount/">
+                <span class="glyphicon glyphicon-user">&ensp;My Account</span>
+            </a>&ensp;&ensp;
+            <a href="https://yoteshinportal.org/logout.php">
+                <span class="glyphicon glyphicon-log-out">&ensp;Logout</span>
+            </a>
+            
+        </div>
+    </div>
+</div>
+<div class="progress"></div>
+<div class="container">
+    <div class="moviefetch">
+        <div class="panel panel-default download-panel">
+        <div class="panel-body download-panel-body">
+        <div class="row moviefetch-label">
+            <div class="col-lg-2 col-md-2">
+                <p class="text-right">Title</p>
+            </div>
+            <div class="col-lg-10 col-md-10 title-input-container">
+                <input id="title" type="text" placeholder="Now you see me 2" onBlur="autocompleteClose()" onFocus="autocompleteShow()">
+                <div id="autocomplete" class="autocomplete-container dark-scrollbar">
+                    <div class="search-text-display">
+                        Search "<span id="data-bind"></span>"
+                        <div class="pull-right search-icon">
+                            Enter &crarr;
+                        </div>
+                    </div>
+                    <ul class="autocomplete-list" id="search">
+                        <li class="autocomplete-list-item">
+                            <div class="autocomplete-display-holder">
+                               
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <select name="type" id="movser">
+                    <option value="movie">movie</option>
+                    <option value="series">series</option>
+                </select>
+                <p class="validate-required"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div id="epinput" class="col-lg-10 col-md-10 col-lg-offset-2 col-md-offset-2 moviefetch-label">
+                Episode No<input id="ep" type="number" placeholder="episode no" style="width: 110px; margin-left: 10px;margin-right: 10px;padding-left: 10px;"><span id="epfill" style="color: red;"></span>
+            </div>
+        </div>
+        <div class="row moviefetch-label">
+            <div class="col-lg-2 col-md-2">
+                <p class="text-right">imdbID</p>
+            </div>
+            <div class="col-lg-10 col-md-10">
+                <input id="imdbid" type="text" placeholder="ttxxxxxx">&ensp;<a class="btn btn-success new-btn" id="new-btn" onclick="popup('https://yoteshinportal.org/popup.html');"><span class="glyphicon glyphicon glyphicon glyphicon-plus-sign">&ensp;</span>NEW</a>
+                <p class="validate-required imdb-required"></p>
+            </div>
+        </div>
+        <div class="row moviefetch-label">
+        <div class="col-lg-2 col-md-2">
+            <p class="text-right">Video Share Link</p>
+        </div>
+        <div class="col-lg-10 col-md-10">
+            <input id="url" type="text" placeholder="https://photos.google.com">
+            <a class="btn btn-success fetch-btn" id="fetch-btn" onclick="fetchmovie();"><span class="glyphicon glyphicon glyphicon-cloud-upload">&ensp;</span>FETCH</a>
+            <p id="url-check-info"></p>
+        </div>
+        </div>
+        <!--<div class="col-lg-2 col-lg-offset-10 col-md-2 col-md-offset-10">
+            <a class="btn btn-block btn-success fetch-btn" onclick="fetchstart();"><span class="glyphicon glyphicon glyphicon-cloud-upload">&ensp;</span>FETCH</a>
+        </div>-->
+            <div class="col-lg-12 col-md-12">
+                <p class="fetch-extra">
+                    *for extra informations such as encoder, uploader separated by | <br>
+                    <input id="extra-info" type="text" placeholder="Encoder : MHS| Uploader : KMH">
+                </p>
+            </div>
+            <div class="row moviefetch-label">
+                <div class="col-lg-6 col-lg-offset-6 col-md-6 col-md-offset-6"><p id="ajax-progress"></p></div>
+            </div>
+
+            <div style="position:relative">
+
+            <div class="quality-checkbox">
+                <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2">
+                    Select Resolutions : 
+                </div>
+                <div class="col-lg-8 col-md-8">
+                <div class="qcheckbox checkbox checkbox-circle checkbox-info checkbox-inline c360p">
+                    <input type="checkbox" id="360p">
+                    <label for="360p">
+                    360P
+                    </label>
+                </div>
+                <div class="qcheckbox checkbox checkbox-circle checkbox-info checkbox-inline c480p">
+                    <input type="checkbox" id="480p">
+                    <label for="480p">
+                    480P
+                    </label>
+                </div>
+                <div class="qcheckbox checkbox checkbox-circle checkbox-info checkbox-inline c720p">
+                    <input type="checkbox" id="720p">
+                    <label for="720p">
+                    720P
+                    </label>
+                </div>
+                <div class="qcheckbox checkbox checkbox-circle checkbox-info checkbox-inline c1080p">
+                    <input type="checkbox" id="1080p">
+                    <label for="1080p">
+                    1080P
+                    </label>
+                </div>
+                <div class="qcheckbox checkbox checkbox-circle checkbox-info checkbox-inline coriginal">
+                    <input type="checkbox" id="original">
+                    <label for="original">
+                    ORIGINAL
+                    </label>
+                </div>
+                <div class="qcheckbox org_reso">
+                    <select name="org-reso" id="org_reso">
+                        <option value="" selected>Resolution</option>
+                        <option value="1080p">1080P</option>
+                        <option value="720p">720P</option>
+                        <option value="360p">360P</option>
+                    </select>
+                </div>
+                </div>
+                </div>
+            
+
+            <div class="sharelink-holder">
+                <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 sharelink" style="background-color: rgba(0, 150, 136, 0.9);color: #e8e8e8;">
+                    <p class="text-right" style="margin: auto; padding: 5px;">Share Link</p>
+                </div>
+                <div class="col-lg-6 col-md-6 sharelink" style="margin: auto;margin-top: 10px;border: 1px dashed #19a093;">
+                    <p id="sharelinkp"><input id="sharelink" type="text" readonly value="share link" style=""></p>
+                </div>
+            </div>
+            
+            <div class="adflylink-holder" style="display: none;">
+                <div class="col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 sharelink" style="background-color: rgba(0, 150, 136, 0.9);color: #e8e8e8;">
+                    <p class="text-right" style="margin: auto; padding: 5px;">Adfly Link</p>
+                </div>
+                <div class="col-lg-6 col-md-6 adflylink" style="margin: auto;margin-top: 10px;border: 1px dashed #19a093;">
+                    <p id="sharelinkp"><input id="adflylink" type="text" readonly value="Adfly link" style=""></p>
+                </div>
+            </div>
+
+            </div>
+
+        </div>
+        </div>
+        <div class="submit-btn-holder">
+            <a class="btn btn-outline btn-warning pull-right" id="save" onclick="save();"><span class="glyphicon glyphicon-ok">&ensp;</span>Save</a>
+            <a class="btn btn-outline btn-danger pull-right" onclick="reset();"><span class="glyphicon glyphicon-remove">&ensp;</span>Reset</a>
+        </div>
+        <div class="next-btn-holder">
+            <a class="btn btn-outline btn-warning pull-right" onClick="nextok();" style="width: 200px;"><span class="glyphicon glyphicon-ok">&ensp;</span>OKAY</a>
+        </div>
+        <div class="col-lg-12 col-md-12 fetch-info">
+            <p id="request-info">
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<!--Script Start -->
+
+<script>
+    var win;
+    var backdrop;
+    var posterimg;
+    var released_y;
+    var tmdbid;
+    var overview;
+    var runtime;
+    //tv_series = false;
+    function tmdbSearch(){
+        backdrop = null;
+        posterimg = null;
+        released_y = null;
+        tmdbid = null;
+        let term = $("#title").val();
+        let type = $("#movser").val();
+        if(!term || term.length < 3) return;
+        let queryUrl;
+        switch(type){
+            case 'movie':
+                queryUrl = `https://api.themoviedb.org/3/search/movie?api_key=06ce019263a2716bce250a7a6624e935&page=1&query=${encodeURIComponent(term)}`
+                break;
+            case 'series':
+                queryUrl = `https://api.themoviedb.org/3/search/tv?api_key=06ce019263a2716bce250a7a6624e935&page=1&query=${encodeURIComponent(term)}`
+                break;
+        }
+        $("#autocomplete").show();
+        $(".progress").show();
+        $.get(queryUrl).then(resp=>{
+            $(".progress").hide();
+            console.log(resp);
+            if(resp.results && resp.results.length){
+                let results = "";
+                for(let res of resp.results){
+                    results += `<a class="autocomplete-item" onClick="loadTmdb(${res.id}, '${type}')"><li class="autocomplete-list-item">
+                        <div class="autocomplete-display-holder">
+                            <div class="list-item-block poster" style="background-image: url('https://image.tmdb.org/t/p/w92${res.poster_path}');"></div>
+                            <div class="list-item-block text">
+                                <div class="title">
+                                    ${res.title || res.name}
+                                </div>
+                                <div class="year">
+                                    (${new Date(res.release_date || res.first_air_date).getFullYear()})
+                                </div>
+                            </div>
+                        </div>
+                    </li></a>`
+                }    
+                $("#search").html(results)
+            }else{
+                $("#search").html(`<li class="autocomplete-list-item">
+                        <div class="autocomplete-display-holder">
+                            <div class="list-item-block text">
+                                Title is not found!
+                            </div>
+                        </div>
+                    </li>`)
+            }
+        }).catch(e=>$(".progress").hide())
+
+    }
+
+    function autocompleteClose(){
+        setTimeout(()=>{
+            $("#autocomplete").hide();
+        },200);
+    }
+
+    function autocompleteShow(){
+        $("#autocomplete").show();
+    }
+
+    function loadTmdb(id, type){
+        let url;
+        switch(type){
+            case 'movie':
+                url = `https://api.themoviedb.org/3/movie/${id}?api_key=06ce019263a2716bce250a7a6624e935`; 
+                break;
+            case 'series':
+                url = `https://api.themoviedb.org/3/tv/${id}?api_key=06ce019263a2716bce250a7a6624e935`;
+                break;
+        }
+        loading('loading...');
+        scrollfloor();
+        $("#request-info").append("Getting movie information....<br>")
+        $.get(url).then(resp=>{
+            backdrop = resp.backdrop_path || null;
+            posterimg = resp.poster_path || null;
+            released_y = resp.release_date || resp.first_air_date;
+            tmdbid = resp.id;
+            overview = resp.overview;
+            runtime = resp.runtime;
+            $("#title").val(resp.title || resp.name);
+            $("#imdbid").val(resp.imdb_id);
+            $(".bodyback").css('background-image', 'url(https://image.tmdb.org/t/p/w1920/' + resp.backdrop_path + ')');
+            $("#request-info").append("Original Title : " + (resp.original_title || resp.original_name) + "<br>");
+            $("#request-info").append("Overview : " + resp.overview + "<br>");
+            loadingoff('');
+        })
+
+    }
+
+    function dataBind(value){
+        $("#data-bind").text(value);
+    }
+
+    $("#title").on('input', function(e){
+        console.log(e.target.value);
+        dataBind(e.target.value);
+    })
+
+    /*window.addEventListener('input', function (e) {
+        console.log("keyup event detected! coming from this element:", e.target);
+    }, false);
+*/
+    function popup (url) { 
+       
+    if(win==undefined){
+        win = window.open(url,'Custom ID','height=700,width=550,toolbar=no,location=no,status=no,menubar=no,addressbar=no;scrollbars=yes,resizable=no');
+        $(".new-btn").addClass('disabled');
+    }else{
+        win.focus();
+    } 
+    checkWindowClosed()    
+    return false;
+}
+
+    function checkWindowClosed(){
+        var timer = setInterval(function() {
+            if(win.closed) {
+            clearInterval(timer);
+            //progress();
+            popupcloseafter();
+            $(".new-btn").removeClass('disabled');
+            win = undefined;
+            }
+        }, 1000);
+    }
+    function popupcloseafter(){
+        var yspstore = localStorage.getItem('ypdata');
+        if (yspstore == undefined){
+            alert('Your Own ID not found!');
+            return false;
+        }
+        var localstore = JSON.parse(yspstore);
+        $("#imdbid").val(localstore.yspid);
+
+    }
+
+
+    function reset(){
+        $(".submit-btn-holder").hide();
+        $("#title").val('');
+        $("#imdbid").val('');
+        $("#ep").val('');
+        $("#url").val('');
+        $("#extra-info").val('');
+        $("#request-info").text('');
+        backdrop = '';
+        posterimg = '';
+        tmdbid = '';
+        released_y = '';
+        overview = '';
+        runtime = '';
+        localStorage.removeItem('ypdata');
+
+    }
+    function laststage(){
+        $("#fetch-btn").addClass('disabled');
+        $("#movser").attr('disabled',true);
+        $(".submit-btn-holder").hide();
+        $(".next-btn-holder").fadeIn(1000);
+        setTimeout(function() {
+            $('#ajax-progress').fadeOut(1000).text('').show();
+        },5000)
+        $('.quality-checkbox').hide();
+        $('.qcheckbox').hide();
+
+    }
+    function nextok(){
+        $(".bodyback").css('background-image','none');
+        $(".next-btn-holder").fadeOut(1000);
+        $(".sharelink-holder").fadeOut(1000);
+        reset();
+        $("#sharelink").val('');
+        $("#fetch-btn").removeClass('disabled');
+        $("#movser").removeAttr('disabled');
+        localStorage.removeItem('ypdata');
+
+    }
+
+    function scrollfloor(){
+        $("html, body").animate({ scrollTop: $(document).height() }, 700);
+    }
+
+    function check(curl){
+        $("#url-check-info").text("");
+        if (curl.indexOf('https://photos.google.com') == 0 || curl.indexOf('https://drive.google.com') == 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function getstoreysp(){
+        var yspstore = localStorage.getItem('ypdata');
+        if (yspstore == undefined){
+            //alert('Your Own ID not found!');
+            tmdbid = 0;
+            return; //false;
+        }else{
+            var localstore = JSON.parse(yspstore);
+            backdrop = localstore.bg;
+            posterimg = localstore.poster;
+            released_y = localstore.released;
+            tmdbid = 0;
+        }
+
+    }
+
+
+    function fetchstart(){
+        backdrop = '';
+        posterimg = '';
+        released_y = '';
+        $("#fetch-btn").addClass('disabled');
+        $("#url-check-info").text('');
+        $(".submit-btn-holder").hide();
+        if(validateysp() === true){
+            getstoreysp();
+            fetchmovie();
+            scrollfloor();
+            return;
+        }
+        if(validateimdb()){
+            loading('loading...');
+            scrollfloor();
+            $("#request-info").append("Getting movie information....<br>")
+            title = $("#title").val();
+            imdbid = $("#imdbid").val();
+            if($("#movser").val() !== "series"){
+
+                tv_series = false;
+
+            }else{
+                tv_series = true;
+            }
+
+
+            posturl = "https://api.themoviedb.org/3/find/"+imdbid+"?external_source=imdb_id&api_key=06ce019263a2716bce250a7a6624e935";
+            omdbapi = "https://www.omdbapi.com/?i="+imdbid+"&plot=full&r=json";
+
+            data = "imdbid="+imdbid;
+            $.get(posturl, function(res){
+                
+                if(!tv_series) {
+                    if(res.movie_results.length > 0) {
+                        overview = res.movie_results[0].overview;
+                        runtime = res.movie_results[0].runtime;
+                        backdrop = res.movie_results[0].backdrop_path;
+                        posterimg = res.movie_results[0].poster_path;
+                        released_y = res.movie_results[0].release_date;
+                        tmdbid = res.movie_results[0].id;
+                        $(".bodyback").css('background-image', 'url(https://image.tmdb.org/t/p/original/' + res.movie_results[0].backdrop_path + ')');
+                        $("#request-info").append("Original Title : " + res.movie_results[0].original_title + "<br>");
+                        $("#request-info").append("Overview : " + res.movie_results[0].overview + "<br>");
+                        //loadingoff('');
+                    }else{
+                        loadingoff('Error, IMDB ID could not found on database');
+                        $("#request-info").append("ERROR => IMDB ID could not found on database<br>");
+                        //$("#imdbid").focus();
+                        $("#fetch-btn").removeClass('disabled');
+                        return false;
+                        //$('#ajax-progress').text('Error, IMDB ID could not found on database');
+                    }
+                }else if(tv_series){
+                    if(res.tv_results.length > 0) {
+                        overview = res.tv_results[0].overview;
+                        runtime = res.tv_results[0].runtime;
+                        backdrop = res.tv_results[0].backdrop_path;
+                        posterimg = res.tv_results[0].poster_path;
+                        released_y = res.tv_results[0].first_air_date;
+                        tmdbid = res.tv_results[0].id;
+                        $(".bodyback").css('background-image', 'url(https://image.tmdb.org/t/p/original/' + res.tv_results[0].backdrop_path + ')');
+                        $("#request-info").append("Original Title : " + res.tv_results[0].original_name + "<br>");
+                        $("#request-info").append("Overview : " + res.tv_results[0].overview + "<br>");
+                        //loadingoff('');
+                    }else{
+
+                        $.get(omdbapi, function(omdb){
+                            if(omdb.Response == "True"){
+                                backdrop = null;
+                                posterimg = "https://img.omdbapi.com/?i="+imdbid+"&apikey=c60252e3&h=1080";
+                                released_y = omdb.Released;
+                                tmdbid = parseInt(omdb.imdbID.replace(/[^0-9\.]/g, ''), 10);
+                                $(".bodyback").css('background-image', 'url('+posterimg+')');
+                                $("#request-info").append("Original Title : " + omdb.Title + "<br>");
+                                $("#request-info").append("Overview : " + omdb.Plot + "<br>");
+
+                            }else{
+                                loadingoff('Error, IMDB ID could not found on database');
+                                $("#request-info").append("ERROR => IMDB ID could not found on database<br>");
+                                //$("#imdbid").focus();
+                                $("#fetch-btn").removeClass('disabled');
+                                return false;
+                            }
+
+                        })
+
+                        
+                    }
+                }
+            scrollfloor();
+            fetchmovie();
+
+            })
+        }else{
+            $("#fetch-btn").removeClass('disabled');
+        }
+
+
+    }
+    function fetchmovie(){
+        scrollfloor();
+        loading('loading...')
+        $(".progress").show();
+        $("#request-info").append("<strong>Fetching video hosted in google drive...</strong><br>");
+        gurl = $("#url").val();
+        if (!check(gurl)){
+            $("#url-check-info").text('Only support fetching videos from Google Drive. Check pls!');
+            $("#url").focus();
+            loadingoff('Error');
+            $("#request-info").append("Error, google photo share url is not valid.<br>");
+            $("#fetch-btn").removeClass('disabled');
+            return false;
+        }
+        if ($("#url").val().indexOf('https://photos.google.com') == 0) {
+                posturl1 = "https://yoteshinportal.org/action/fetch/";
+        }else if ($("#url").val().indexOf('https://drive.google.com') == 0) {
+            posturl1 = "https://yoteshinportal.org/gdrive.php";
+        }
+        data1 = "req=new&link="+gurl;        
+        $.post(posturl1, data1, function(res){
+                loadingoff('');
+                $(".progress").hide();
+                if((res == 'error') || (!res) ){
+                    $("#request-info").append("Cannot fetch video source from share link<br>");
+                    $("#url-check-info").text('Cannot fetch video source from this share link');
+                    $("#fetch-btn").removeClass('disabled');
+                    return;
+                }
+                $("#fetch-btn").removeClass('disabled');
+                var element = $.parseJSON(res);
+                var s360p, s480p, s720p, s1080p, soriginal;
+                s360p = (element.s360p) ? 'available' : 'unavailable';
+                s480p = (element.s480p) ? 'available' : 'unavailable';
+                s720p = (element.s720p) ? 'available' : 'unavailable';
+                s1080p = (element.s1080p) ? 'available' : 'unavailable';
+                soriginal = (element.original) ? 'available' : 'unavailable';
+                
+                //$("#request-info").append("1080p HD : "+element.fhd+"<br>720p HD : "+element.hd+"<br>360p : "+element.sd+"<br>Original Resolution : "+element.original+"<br>");
+                $("#request-info").append("1080p HD : "+s1080p+"<br>720p HD : "+s720p+"<br>480p : "+s480p+"<br>360p : "+s360p+"<br>Original Resolution : "+soriginal+"<br>");
+                // show quality animation
+                var delaysec = 100;
+                $('.quality-checkbox').show();
+                $('.qcheckbox').hide();
+                
+                if(element.s360p){
+                    $('#360p').prop('checked', true)
+                    $('.c360p').delay(delaysec).fadeIn(800);
+                    delaysec = delaysec + 50;
+                }
+                if(element.s480p){
+                    $('#480p').prop('checked', true)
+                    $('.c480p').delay(delaysec).fadeIn(800);
+                    delaysec = delaysec + 50;
+                }
+                if(element.s720p){
+                    $('#720p').prop('checked', true)
+                    $('.c720p').delay(delaysec).fadeIn(800);
+                    delaysec = delaysec + 50;
+                }
+                if(element.s1080p){
+                    $('#1080p').prop('checked', true)
+                    $('.c1080p').delay(delaysec).fadeIn(800);
+                    delaysec = delaysec + 50;
+                }
+                if(element.original){
+                    $('#original').prop('checked', true)
+                    $('.coriginal').delay(delaysec).fadeIn(800);
+                    delaysec = delaysec + 50;
+                    $('.org_reso').delay(delaysec).fadeIn(800);
+                }
+                // ====================== animation end;
+
+                $(".submit-btn-holder").fadeIn(300);
+        })
+
+    }
+
+
+    function validateimdb(){
+        $(".imdb-required").text("")
+        if ($("#imdbid").val() && $("#imdbid").val().indexOf('tt') == 0) {
+            return true;
+        }else if($("#imdbid").val() && $("#imdbid").val().indexOf('tt') !== 0){
+            $(".imdb-required").text("Invalid IMDB ID");
+            return false
+        }else{
+            $(".imdb-required").text("imdb ID is required to fetch movie informations")
+            return false
+        }
+    }
+
+    function validateysp(){
+        if ($("#imdbid").val() && $("#imdbid").val().indexOf('YP-') == 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function validatesave(){
+        $(".validate-required").text("");
+        $("#epfill").text("");
+        if((!$("#title").val()) || /*(!$("#imdbid").val())*/ !tmdbid || (!$("#url").val()) ){
+            $(".validate-required").text('*required fields')
+            return false;
+        }
+        
+        if($("#title").val().indexOf("'") != -1 || $("#title").val().indexOf('"') != -1 || $("#title").val().indexOf("&") != -1) {
+           $(".validate-required").text('cannot contain &#34; or &#39; or &#38; in title')
+            return false; 
+        }
+
+        if(($("#movser").val() == 'series' && (!$("#ep").val())) || ($("#movser").val() == 'series' && $("#ep").val() && $("#ep").val() < 1) ){
+            $("#ep").focus();
+            $("#epfill").text("Fill episode number");
+            return false;
+        }
+        if(qualitycheck() === false){
+            alert('Choose at least one resolution to stream and download');
+            return false;
+        }
+        if(!check($("#url").val())){
+            return false;
+        }
+        if($('#original').prop('checked')){
+            if($("#org_reso").val() == ""){
+                $("#org_reso").focus();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function qualitycheck(){
+        //if (($('#360p').prop('checked') === false) && ($('#720p').prop('checked') === false) && ($('#1080p').prop('checked') === false) && ($('#original').prop('checked') === false)){
+         //   return false;
+        //}
+        return true;
+    }
+
+    function datacollect() {
+
+            var obj = new Object();
+            obj.title = $("#title").val();
+            obj.imdbid = $("#imdbid").val();
+            obj.type = $("#movser").val();
+            obj.epno = $("#ep").val();
+            obj.share = $("#url").val();
+            obj.extra = $("#extra-info").val();
+            obj.year = released_y;
+            obj.backdropurl = backdrop;
+            obj.posterurl = posterimg;
+            obj.tmdbid = tmdbid;
+            obj.overview = overview;
+            obj.runtime = runtime;
+                
+            if($('#360p').prop('checked')){ obj.show360p = 1 }
+            if($('#720p').prop('checked')){ obj.show720p = 1 }
+            if($('#1080p').prop('checked')){ obj.show1080p = 1 }
+            if($('#original').prop('checked')){ 
+                obj.showoriginal = 1;
+                obj.orig_res = $("#org_reso").val();
+            }
+
+            var jstring = JSON.stringify(obj);
+            console.log(jstring);
+            return jstring;
+
+    }
+
+    $(document).ready(function () {
+
+        /*setTimeout(function(){
+            $(".icon-p").addClass('icon-p-l');
+        },2000)
+        setTimeout(function(){
+            $(".icon-g").addClass('icon-g-l');
+        },4000)
+        setTimeout(function(){
+            $(".icon-class").addClass('icon-g-p-same');
+        },7000)
+        setTimeout(function(){
+            $(".drive-container").fadeOut(400);
+            $(".new-overlay").fadeOut(800);           
+        },9000) */
+
+        $('#title').on("keyup", function(e) {
+            if (e.keyCode == 13) {
+                tmdbSearch();
+            }
+        });
+
+        $("#epinput").hide();
+        $(".submit-btn-holder").hide();
+        $(".next-btn-holder").hide();
+        $('.quality-checkbox').hide();
+        $('.qcheckbox').hide();
+        $(".sharelink-holder").hide();
+        $("#movser").on('change',  function () {
+            $(".submit-btn-holder").hide();
+            if($("#movser").val() == 'series'){
+                tv_series = true;
+                $("#epinput").show();
+                $("#ep").focus();
+            }else {
+                tv_series = false;
+                $("#epinput").hide();
+            }
+        });
+    })
+
+    function save(){
+        $("#save").addClass('disabled');
+        if(validatesave()) {
+            $('.quality-checkbox').fadeOut(800);
+            loading('Saving, please wait...');
+            $("#request-info").append("<strong>Saving on server, please wait .... </strong><br>");
+            
+            saveurl = "https://yoteshinportal.org/save.php";
+
+            var savedata = datacollect();
+            $.post(saveurl, savedata, function (res) {
+                if(res){
+                    if(!isJson(res)){
+                        $("#save").removeClass('disabled');
+                        loadingoff('Error , server internal error');
+                        $("#request-info").append("<strong>Error => Sorry, server internal error. Pls contact to server administrator.  </strong><br>");
+                        return;
+                    }
+                    var element = $.parseJSON(res);
+                    if(element.status == 'true'){
+                        loadingoff('Successfully save on server');
+                        $("#save").removeClass('disabled');
+                        $("#request-info").append("<strong>Successfully fetch and save your video on server and it is ready to watch</strong><br>");
+                        $("#request-info").append("<strong>Share Link =>"+element.share_url+"</strong><br>");
+                        $("#sharelink").val(element.share_url);
+                        $(".sharelink-holder").delay(800).fadeIn(800);
+                        if(element.adfly_url){
+                            $("#adflylink").val(element.adfly_url);
+                            $(".adflylink-holder").delay(900).fadeIn(800);
+                        }
+                        laststage();
+                    }else{
+                        loadingoff('Error , cannot save');
+                        $("#save").removeClass('disabled');
+                        $("#request-info").append("<strong>Error => Sorry, cannot save your submitted video.  </strong><br>");
+                    }
+                }else{
+                    loadingoff('Error , server internal error');
+                    $("#save").removeClass('disabled');
+                    $("#request-info").append("<strong>Error => Sorry, server internal error. Pls contact to server administrator.  </strong><br>");
+                }
+            })
+        }else{
+            $("#save").removeClass('disabled');
+        }
+
+    }
+
+    function isJson(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
+
+    function loading(msgtext){
+        $('#ajax-progress').text(msgtext);
+        $('#ajax-progress').css("background","url(https://yoteshinportal.org/assests/loaderIcon.gif) no-repeat right");
+    }
+    function loadingoff(msgtext){
+        $('#ajax-progress').text(msgtext);
+        $('#ajax-progress').css("background","none");
+    }
+</script>
+<div class="new-overlay"></div>
+<div class="drive-container">
+<div class='g-p-container'>
+    <div class="photo-icon"><img class='icon-p icon-g-p-s icon-class' src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Google_Photos_icon.svg"></div>
+    <div class="drive-icon"><img class='icon-g icon-g-p-s icon-class' src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Logo_of_Google_Drive.svg"></div>
+</div>
+</div>
+</body>
+</html>
+
