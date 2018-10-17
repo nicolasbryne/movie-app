@@ -44,10 +44,15 @@
                 </div>
               </div>
 
-              <div class="wrap-input100 validate-input m-b-18">
-                <span class="label-input100">Tmdb ID</span>
-                <input class="form-control input100 text-light" type="text" name="tmdb_id" placeholder="Enter tmdb Id" required>
-                <span class="focus-input100"></span>
+              <div class="row mt-0 mr-0">
+                <div class="col">
+                  <div class="wrap-input100 validate-input m-b-18">
+                    <span class="label-input100">Tmdb ID</span>
+                    <input readonly="true" class="form-control input100 text-light" type="number" name="tmdb_id" placeholder="Enter tmdb Id" required>
+                    <span class="focus-input100"></span>
+                  </div>
+                </div>
+                <div class="col-1 d-flex align-items-center justify-content-center mb-3"><a onClick="toggleLock(this)" class="btn lock-btn text-warning text-trans"><i class="fa fa-lock"></i></a></div>                  
               </div>
 
               <div class="wrap-input100 validate-input m-b-18">

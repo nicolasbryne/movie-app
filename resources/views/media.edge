@@ -20,12 +20,12 @@
                     <div class="poster-caption-wrap">
                         <div class="poster-caption">
                             <div class="poster-content">
-                                <h2>Now You See Me</h2>
+                                <h2>{{result.title}}</h2>
                                 <p class="p__mod">
-                                    In a self-destructing world, a vengeful Australian policeman sets out to stop a violent motorcycle gang
+                                    {{result.summary}}
                                 </p>
-                                <a href="#" class="btn btn-red">Download</a>
-                                <a href="javascript:void(0)" class="btn btn-default" onclick="openLoginModal()";>Sign In</a>
+                                <a href="#" class="btn btn-rounded btn-red">Download</a>
+                                <a href="javascript:void(0)" class="btn btn-rounded btn-default" onclick="openLoginModal()";>Sign In</a>
 
                                 <div class='btn-container'>
                                     <ul class="action-btn">
@@ -82,13 +82,13 @@
                                 <li>
                                     <div class="row">
                                         <div class="col-md-6 col-sm-12 col-xs-12 meta-label">Released Date</div>
-                                        <div class="col-md-6 col-sm-12 col-xs-12 meta-label-item">3.8.2017</div>
+                                        <div class="col-md-6 col-sm-12 col-xs-12 meta-label-item">{{result.available_at}}</div>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="row">
                                         <div class="col-md-6 col-sm-12 col-xs-12">Duration</div>
-                                        <div class="col-md-6 col-sm-12 col-xs-12 meta-label-item">123mins</div> 
+                                        <div class="col-md-6 col-sm-12 col-xs-12 meta-label-item">{{result.runtime}} mins</div> 
                                     </div>
                                 </li>
                                 <li>
@@ -100,13 +100,13 @@
                                 <li>
                                     <div class="row">
                                         <div class="col-md-6 col-sm-12 col-xs-12">Size</div>
-                                        <div class="col-md-6 col-sm-12 col-xs-12 meta-label-item">3Gb</div>
+                                        <div class="col-md-6 col-sm-12 col-xs-12 meta-label-item">{{result.size}}</div>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="row">
                                         <div class="col-md-6 col-sm-12 col-xs-12">Subtitle</div>
-                                        <div class="col-md-6 col-sm-12 col-xs-12 meta-label-item">Burmese</div>
+                                        <div class="col-md-6 col-sm-12 col-xs-12 meta-label-item">{{result.subtitle}}</div>
                                     </div>
                                 </li>
                             </ul>

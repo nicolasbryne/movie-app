@@ -6,16 +6,23 @@ function tmdbShow(){
 }
 
 function tmdbHide(){
-    setTimeout(()=> $("#autocomplete").hide(), 100);
+    setTimeout(()=> $("#autocomplete").hide(), 200);
 }
 
-function setTmdbId(id){
-    console.log(id)
+function setTmdb(id, title){
+    $('#movie input[name="title"]').val(title);
     $('#movie input[name="tmdb_id"]').val(id);
+}
+
+function toggleLock(e){
+    $('#movie input[name="tmdb_id"]').attr('readonly', function(_, attr){ return !attr});
+    $(e).toggleClass('text-trans')
 }
 async function tmdbSearch(type){
     let term = $("#movie_title").val();
-    if(!term || term.length < 3) return;
+    if(!term || term.length < 3){
+        return false;
+    } 
     let queryUrl = type === 1 
         ? `https://api.themoviedb.org/3/search/movie?api_key=06ce019263a2716bce250a7a6624e935&page=1&query=${encodeURIComponent(term)}`
         :`https://api.themoviedb.org/3/search/tv?api_key=06ce019263a2716bce250a7a6624e935&page=1&query=${encodeURIComponent(term)}`
@@ -33,7 +40,7 @@ async function tmdbSearch(type){
     if(resp.results && resp.results.length){
         let results = "";
         for(let res of resp.results){
-            results += `<a class="autocomplete-item" onClick="setTmdbId(${res.id})"><li class="autocomplete-list-item">
+            results += `<a class="autocomplete-item" onClick="setTmdb(${res.id}, '${res.title}')"><li class="autocomplete-list-item">
                 <div class="autocomplete-display-holder">
                     <div class="list-item-block poster" style="background-image: url('https://image.tmdb.org/t/p/w92${res.poster_path}');"></div>
                     <div class="list-item-block text p-2">
@@ -62,8 +69,12 @@ async function tmdbSearch(type){
 
 }
 
+function resetAutocomplete(){
+    $("#search").html("");
+    $("#data-bind").text("on Tmdb");
+}
 $('document').ready(function(){
-    console.log($('#movie input[name="tmdb_id"]'))
+
     $('#movie_title').on("keyup", function(e) {
         if (e.keyCode == 13) {
             tmdbSearch(1);
@@ -71,10 +82,8 @@ $('document').ready(function(){
     });
 
     $('#movie').on('keyup keypress', function(e) {
-        console.log('catch')
-        var keyCode = e.keyCode || e.which;
+        const keyCode = e.keyCode || e.which;
         if (keyCode === 13) { 
-            console.log('pre')
           e.preventDefault();
           e.stopPropagation()
           return false;
@@ -110,6 +119,7 @@ $('document').ready(function(){
             }).always((resp)=> {
                 btn.attr('disabled', false).prev().prev().remove();
                 form.classList.remove('was-validated');
+                resetAutocomplete();
             });
     });
 
@@ -145,6 +155,7 @@ $('document').ready(function(){
             }).always((resp)=> {
                 btn.attr('disabled', false).prev().prev().remove();
                 form.classList.remove('was-validated');
+                resetAutocomplete();
             });
     });
 })

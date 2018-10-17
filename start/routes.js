@@ -54,3 +54,6 @@ Route.group( ()=> {
     Route.on('links').render('dashboard.links', { breadcrumb : 'Manage Links', icon : 'link' });
     Route.resource('media-items', 'MediaItemController');
 }).prefix('dashboard')
+
+
+Route.get('/view/movies/:id', 'MediaItemController.render');

@@ -347,7 +347,10 @@ td.year, td.resolution, td.audio{
     background-color: transparent;
     box-shadow: none;
 }
-
+.input100.form-control:read-only {
+    background-color: transparent;
+    box-shadow: none;
+}
 .paginate a.page-link {
     background: #1d1e20;
     color: rgba(255, 255, 255, 0.68);
@@ -465,4 +468,8 @@ td.year, td.resolution, td.audio{
 .list-item-block.text .year{
     font-weight: 300;
     color: rgba(225,225,225,0.4)
+}
+
+.lock-btn{
+    background: rgba(0, 0, 0, 0.2);
 }

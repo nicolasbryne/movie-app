@@ -30,6 +30,7 @@
     "@adonisjs/shield": "^1.0.6",
     "@adonisjs/validator": "^5.0.4",
     "@pelevesque/paginate": "0.0.2",
+    "axios": "^0.18.0",
     "sqlite3": "^4.0.2"
   },
   "devDependencies": {},
