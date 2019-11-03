@@ -1,0 +1,47 @@
+<nav id="sidebar" class="bg-dark">
+  <div class="sidebar-header">
+    <i class="fa fa-tachometer-alt mr-2"></i>Dashboard
+  </div>
+
+  <ul class="list-unstyled components pt-0">
+
+    <li class="{{ url === '/dashboard' ? 'active' : '' }}">
+      <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-home mr-2"></i>Home</a>
+      <ul class="collapse list-unstyled ul-folder" id="homeSubmenu">
+        <li>
+          <a href="#">Reporting</a>
+        </li>
+        <li>
+          <a href="#">Views</a>
+        </li>
+        <li>
+          <a href="#">Analysis</a>
+        </li>
+      </ul>
+    </li>
+    <li class="{{ url === '/dashboard/media-items/create' ? 'active' : '' }}">
+      <a href="/dashboard/media-items/create"><i class="fas fa-video mr-2"></i>Media</a>
+    </li>
+    <li>
+      <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-users mr-2"></i>Users</a>
+      <ul class="collapse list-unstyled ul-folder" id="pageSubmenu">
+        <li>
+          <a href="#">All users</a>
+        </li>
+        <li>
+          <a href="#">Add users</a>
+        </li>
+        <li>
+          <a href="#">Manage users</a>
+        </li>
+      </ul>
+    </li>
+    <li class="{{ url === '/dashboard/links' ? 'active' : '' }}">
+      <a href="/dashboard/links"><i class="fa fa-link mr-2"></i>Manage links</a>
+    </li>
+    <li>
+      <a href="#"><i class="fa fa-cogs mr-2"></i>Setting</a>
+    </li>
+  </ul>
+
+</nav>

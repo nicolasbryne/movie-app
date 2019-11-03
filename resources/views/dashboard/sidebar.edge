@@ -1,6 +1,6 @@
 <nav id="sidebar" class="bg-dark">
   <div class="sidebar-header">
-    <i class="fa fa-tachometer-alt mr-2"></i>Dashboard
+    <a href="/dashboard"><i class="fa fa-tachometer-alt mr-2"></i>Dashboard</a>
   </div>
 
   <ul class="list-unstyled components pt-0">
@@ -19,8 +19,8 @@
         </li>
       </ul>
     </li>
-    <li class="{{ url === '/dashboard/media-items/create' ? 'active' : '' }}">
-      <a href="/dashboard/media-items/create"><i class="fas fa-video mr-2"></i>Media</a>
+    <li class="{{ url === '/dashboard/media-items' ? 'active' : '' }}">
+      <a href="/dashboard/media-items"><i class="fas fa-video mr-2"></i>Media</a>
     </li>
     <li>
       <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-users mr-2"></i>Users</a>
@@ -32,7 +32,7 @@
           <a href="#">Add users</a>
         </li>
         <li>
-          <a href="#">Manage users</a>
+          <a href="/dashboard/users">Manage users</a>
         </li>
       </ul>
     </li>

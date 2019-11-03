@@ -1,0 +1,121 @@
+@layout('dashboard.template')
+
+@section('content')
+<div class="container-fluid">
+  <section class="card-wrapper">
+    <div class="row">
+      <div class="col-sm-6 col-lg-3">
+        <div class="card text-white bg-primary mb-4">
+          <div class="card-body">
+            <div class="btn-group float-right">
+              <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="icon-settings"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+            <div class="text-value font-weight-bold">1754</div>
+            <div class="text-label">Total links</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="card text-white bg-info mb-4">
+          <div class="card-body">
+            <button class="btn btn-transparent p-0 float-right" type="button">
+              <i class="icon-location-pin"></i>
+            </button>
+            <div class="text-value font-weight-bold">132</div>
+            <div>Your links</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="card text-white bg-warning mb-4">
+          <div class="card-body">
+            <div class="btn-group float-right">
+              <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-cog"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+            <div class="text-value font-weight-bold">9823</div>
+            <div>Total views</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="card text-white bg-danger mb-4">
+          <div class="card-body">
+            <div class="btn-group float-right">
+              <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="icon-settings"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+            <div class="text-value font-weight-bold">3215</div>
+            <div>Views per month</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="card bg-dark">
+    <div class="card-body">
+      <div class="card-title">
+        <h4>Traffic</h4>
+        <div class="small text-muted">November 2018</div>
+      </div>
+      <div class="chart-wrapper" style="height: 300px;">
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection
+
+@section('extrascript')
+{{script('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js')}}
+
+  <script>
+      var ctx = document.getElementById('myChart').getContext('2d');
+      //ctx.height = 300;
+      var myLineChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: ["January", "February", "March", "April", "May", "June", "July"],
+              datasets: [{
+                  label: "My First dataset",
+                  backgroundColor: 'rgba(23, 162, 184, 0.12)',
+                  borderColor: '#17a2b8',
+                  data: [0, 10, 5, 2, 20, 30, 45],
+              }]
+          },
+          options: {
+                  maintainAspectRatio: false,
+              }
+      });
+  </script>
+@endsection

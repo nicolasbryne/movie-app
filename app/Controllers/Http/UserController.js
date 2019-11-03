@@ -5,6 +5,15 @@ const { validate } = use('Validator')
 
 class UserController {
 
+    async index( {view }) {
+        const users = await User.all();
+        //console.log(users.toJSON())
+        return view.render('dashboard.users', {
+            breadcrumb : 'User Management',
+            icon : 'users'
+        })
+    }
+
     async create({ request, session, response }){
 
         const input = request.all();

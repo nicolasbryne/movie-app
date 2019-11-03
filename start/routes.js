@@ -53,7 +53,12 @@ Route.group( ()=> {
     Route.on('/').render('dashboard.home', { breadcrumb : 'Home', icon : 'chart-line'});
     Route.on('links').render('dashboard.links', { breadcrumb : 'Manage Links', icon : 'link' });
     Route.resource('media-items', 'MediaItemController');
+    Route.resource('users', 'UserController')
 }).prefix('dashboard')
 
 
 Route.get('/view/movies/:id', 'MediaItemController.render');
+
+Route.on('/vue').render('vue');
+Route.on('/vue-media').render('dashboard.add-media')
+Route.on('/vue-home').render('dashboard.home-vue');
